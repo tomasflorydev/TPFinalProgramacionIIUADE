@@ -12,7 +12,7 @@ public interface IGrafo<T> {
 
     void agregarNodo(T valor);
 
-    void conectar(T origenValor, T destinoValor, int peso);
+    void conectarNodo(T origenValor, T destinoValor, int peso);
 
     int[][] obtenerMatrizAdyacencia();
 

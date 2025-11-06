@@ -6,11 +6,13 @@ public interface IGrafo<T> {
 
     boolean Dirigido();
 
-    Map<T, INodo<T>> getNodos();
+    List<T> getNodos();
 
     INodo<T> getNodo(T valor);
 
     void agregarNodo(T valor);
+
+    List<T> vecinosDe(T dato);
 
     void conectarNodo(T valorOrigen, T valorDestino, int peso);
 

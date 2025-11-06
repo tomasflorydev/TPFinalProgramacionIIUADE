@@ -15,13 +15,26 @@ public class Grafo<T> implements IGrafo<T> {
     }
 
     @Override
-    public Map<T, INodo<T>> getNodos() {
-        return this.mapaNodos;
+    public List<T> getNodos() {
+        return new ArrayList<T>(this.mapaNodos.keySet());
     }
 
     @Override
     public INodo<T> getNodo(T valor) {
         return this.mapaNodos.get(valor);
+    }
+
+    @Override
+    public List<T> vecinosDe(T dato) {
+        INodo<T> nodoOrigen = getNodo(dato);
+
+        List<T> resultado = new ArrayList<>();
+        if (nodoOrigen != null) {
+            for (INodo<T> vecino : nodoOrigen.getVecinos()) {
+                resultado.add(vecino.getDato());
+            }
+        }
+        return resultado;
     }
 
     @Override
@@ -40,10 +53,29 @@ public class Grafo<T> implements IGrafo<T> {
             destino.agregarVecino(origen, peso);
         }
     }
-
     @Override
     public int[][] obtenerMatrizAdyacencia() {
-        return new int[0][];
+        List<T> listaValores = new ArrayList<>(mapaNodos.keySet());
+        int n = listaValores.size();
+        int[][] matriz = new int[n][n];
+
+        for (int i = 0; i < n; ++i) {
+            INodo<T> nodoOrigen = mapaNodos.get(listaValores.get(i));
+
+            List<INodo<T>> vecinos = nodoOrigen.getVecinos();
+            List<Integer> pesos = nodoOrigen.getPesos();
+
+            for (int k = 0; k < vecinos.size(); ++k) {
+                INodo<T> nodoDestino = vecinos.get(k);
+                int peso = pesos.get(k);
+                int j = listaValores.indexOf(nodoDestino.getDato());
+
+                if (j != -1) {
+                    matriz[i][j] = peso;
+                }
+            }
+        }
+        return matriz;
     }
 
     @Override

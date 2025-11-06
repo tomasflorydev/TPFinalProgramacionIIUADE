@@ -35,4 +35,17 @@ public class Nodo<T> implements INodo<T> {
     public List<Integer> getPesos() {
         return this.pesosAristas;
     }
+    @Override
+    public void agregarVecino(INodo<T> nodo, int peso) {
+
+        if (!adyacentes.contains(nodo)) {
+            adyacentes.add(nodo);
+            pesosAristas.add(peso);
+        } else {
+            int index = adyacentes.indexOf(nodo);
+            if (index != -1) {
+                pesosAristas.set(index, peso);
+            }
+        }
+    }
 }

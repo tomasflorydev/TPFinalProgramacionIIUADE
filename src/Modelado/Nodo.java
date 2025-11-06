@@ -48,4 +48,12 @@ public class Nodo<T> implements INodo<T> {
             }
         }
     }
+    @Override
+    public void eliminarVecino(INodo<T> nodo) {
+        int index = adyacentes.indexOf(nodo);
+        if (index != -1) {
+            adyacentes.remove(index);
+            pesosAristas.remove(index);
+        }
+    }
 }

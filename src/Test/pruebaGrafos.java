@@ -15,19 +15,19 @@ public class pruebaGrafos {
         Grafo<Persona> grafo = new Grafo(false);
         Persona esteban = new Persona("Esteban", 33);
         Persona juan = new Persona("Juan", 45);
-        Persona nicolas = new Persona("Nicolás", 13);
+        Persona chiara = new Persona("Chiara", 21);
         Persona mateo = new Persona("Mateo", 23);
         Persona sofia = new Persona("Sofia", 19);
 
         grafo.agregarNodo(esteban);
         grafo.agregarNodo(juan);
-        grafo.agregarNodo(nicolas);
+        grafo.agregarNodo(chiara);
         grafo.agregarNodo(mateo);
         grafo.agregarNodo(sofia);
 
         grafo.conectarNodo(esteban, juan, 2);
-        grafo.conectarNodo(sofia, nicolas, 3);
-        grafo.conectarNodo(nicolas, mateo, 4);
+        grafo.conectarNodo(sofia, chiara, 3);
+        grafo.conectarNodo(chiara, mateo, 4);
         grafo.conectarNodo(mateo, esteban, 5);
         grafo.conectarNodo(juan, sofia, 1);
 

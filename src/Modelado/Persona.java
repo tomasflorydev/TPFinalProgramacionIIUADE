@@ -18,14 +18,6 @@ public class Persona {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Persona)) return false;
-        Persona p = (Persona) o;
-        return edad == p.edad && nombre.equals(p.nombre);
-    }
-
-    @Override
     public int hashCode() {
         return nombre.hashCode() * 31 + edad;
     }

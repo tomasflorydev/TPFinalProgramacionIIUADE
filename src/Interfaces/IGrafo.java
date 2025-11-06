@@ -18,5 +18,5 @@ public interface IGrafo<T> {
 
     List<T> recorridoBFS(T valorInicio);
 
-    List<T> DFS(T inicioValor);
+    List<T> recorridoDFS(T valorInicio);
 }

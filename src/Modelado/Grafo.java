@@ -73,8 +73,35 @@ public class Grafo<T> implements IGrafo<T> {
     }
 
     @Override
-    public List<T> DFS(T inicioValor) {
-        return List.of();
+    public List<T> recorridoDFS(T valorInicio) {
+        List<T> resultado = new ArrayList<>();
+        INodo<T> inicio = getNodo(valorInicio);
+        if (inicio == null) return resultado;
+
+        Set<INodo<T>> nodosVisitados = new HashSet<>();
+        Stack<INodo<T>> pila = new Stack<>(); //Usamos una Pila para DFS
+
+        pila.push(inicio);
+
+        while (!pila.isEmpty()) {
+            INodo<T> actual = pila.pop();
+
+            if (!nodosVisitados.contains(actual)) {
+                nodosVisitados.add(actual);
+                resultado.add(actual.getDato());
+
+                List<INodo<T>> listaVecinos = actual.getVecinos();
+                List<INodo<T>> vecinosInvertidos = new ArrayList<>(listaVecinos);
+                Collections.reverse(vecinosInvertidos);
+
+                for (INodo<T> vecino : vecinosInvertidos) {
+                    if (!nodosVisitados.contains(vecino)) {
+                        pila.push(vecino);
+                    }
+                }
+            }
+        }
+        return resultado;
     }
 
     @Override

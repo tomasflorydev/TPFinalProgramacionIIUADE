@@ -16,7 +16,7 @@ public interface IGrafo<T> {
 
     int[][] obtenerMatrizAdyacencia();
 
-    List<T> BFS(T inicioValor);
+    List<T> recorridoBFS(T valorInicio);
 
     List<T> DFS(T inicioValor);
 }

@@ -47,8 +47,29 @@ public class Grafo<T> implements IGrafo<T> {
     }
 
     @Override
-    public List<T> BFS(T inicioValor) {
-        return List.of();
+    public List<T> recorridoBFS(T valorInicio) {
+        List<T> resultado = new ArrayList<>();
+        INodo<T> inicio = getNodo(valorInicio);
+        if (inicio == null) return resultado;
+
+        Set<INodo<T>> nodosVisitados = new HashSet<>();
+        Queue<INodo<T>> cola = new LinkedList<>(); // Usamos una Cola para BFS
+
+        cola.add(inicio);
+        nodosVisitados.add(inicio);
+
+        while (!cola.isEmpty()) {
+            INodo<T> actual = cola.poll();
+            resultado.add(actual.getDato());
+
+            for (INodo<T> vecino : actual.getVecinos()) {
+                if (!nodosVisitados.contains(vecino)) {
+                    nodosVisitados.add(vecino);
+                    cola.add(vecino);
+                }
+            }
+        }
+        return resultado;
     }
 
     @Override

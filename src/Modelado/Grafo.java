@@ -32,8 +32,13 @@ public class Grafo<T> implements IGrafo<T> {
     }
 
     @Override
-    public void conectarNodo(T origenValor, T destinoValor, int peso) {
-
+    public void conectarNodo(T valorOrigen, T valorDestino, int peso) {
+        INodo<T> origen = getNodo(valorOrigen);
+        INodo<T> destino = getNodo(valorDestino);
+        origen.agregarVecino(destino, peso);
+        if (!esOrientado) {
+            destino.agregarVecino(origen, peso);
+        }
     }
 
     @Override
